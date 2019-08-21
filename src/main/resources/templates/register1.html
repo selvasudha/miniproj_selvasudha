@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="register/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="register/css/style.css">
+    <style>
+        span{
+            color:red;
+        }
+    </style>
+
+
+    <script>
+
+        function checkPassword(form) {
+            password= form.password.value;
+            confirmpassword = form.confirmpassword.value;
+
+            if (password != confirmpassword) {
+                alert ("\nPassword did not match: Please try again...")
+                return false;
+            }
+
+// If same return True.
+            else{
+                alert("Password Match: Welcome to GeeksforGeeks!")
+                return true;
+            }
+        }
+    </script>
+<style>
+    .container{
+        margin-top: 15%;
+        margin-left: 27%;
+    }
+</style>
+</head>
+<body>
+
+<div class="main">
+
+    <div class="container">
+        <form method="post" th:action="@{/register1}" th:object="${register1}">
+            <h2 align="center" >Registration form</h2>
+            <div class="form-group-1">
+                <!-- <input type="text" name="title" id="title" placeholder="Title" required /> -->
+                <input type="text" name="name" id="name" placeholder="     Name" required th:field="*{name}" />
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('name')}"
+                      th:errors="*{name}"> Name</span>
+                <input type="email" name="email" id="email" placeholder="     Email" required th:field="*{email_address}"/>
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('email_address')}"
+                      th:errors="*{email_address}">Email id</span>
+                <input type="password" name="password" id="password" placeholder="     Password" required th:field="*{password}" />
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('password')}"
+                      th:errors="*{password}">Password</span>
+                <input type="password" name="confirmpassword" id="confirmpassword" placeholder="     Confirmpassword" required th:field="*{confirmpassword}" />
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('confirmpassword')}"
+                      th:errors="*{confirmpassword}">ConfirmPassword</span>
+                <!--  <input type="number" name="phone_number" id="phone_number" placeholder="Phone number" required /> -->
+                <!--  <div class="select-list">
+                     <select name="course_type" id="course_type">
+                         <option slected value="">Course Type</option>
+                         <option value="society">Society</option>
+                         <option value="language">Language</option>
+                     </select>
+                 </div -->>
+            </div>
+            <!--  <div class="form-group-2">
+                 <h3>How would you like to bo located ?</h3>
+                 <div class="select-list">
+                     <select name="confirm_type" id="confirm_type">
+                         <option seleected value="">By phone</option>
+                         <option value="by_email">By email</option>
+                     </select>
+                 </div>
+                 <div class="select-list">
+                     <select name="hour_appointment" id="hour_appointment">
+                         <option seleected value="">Hours : 8am 10pm</option>
+                         <option value="9h-11h">Hours : 9am 11pm</option>
+                     </select>
+                 </div>
+             </div> -->
+            <!-- <div class="form-check">
+                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree to the  <a href="#" class="term-service">Terms and Conditions</a></label>
+            </div> -->
+            <div class="form-submit" align="center" style="padding-bottom: 10px">
+                <input type="submit"  name="submit" id="submit" class="submit" value="Submit" />
+            </div>
+            <a th:href="register">Login Now</a>
+        </form>
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="register/vendor/jquery/jquery.min.js"></script>
+<script src="register/js/main.js"></script>
+</body>
+</html>
